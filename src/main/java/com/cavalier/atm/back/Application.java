@@ -1,4 +1,4 @@
-package com.cavalier.questionnaire.back;
+package com.cavalier.atm.back;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
