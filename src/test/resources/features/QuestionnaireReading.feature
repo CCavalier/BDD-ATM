@@ -1,13 +1,10 @@
-Feature: Questionnaire reading
-  Allow the user to import its Excel file into the application.
+Feature: compute
+	permet d' effectuer des operations
  
-  Scenario: Import an questionnaire excel file.
-  	Given an properly formatted excel file "Questionnaire.csv"
-  	When the user import the file
-  	Then the questions are correctly imported
+  Scenario: Add two simple numbers.
+  	Given two simple numbers 2 and 3
+  	When I add them
+  	Then the result is 5
   	
- Scenario: Import an questionnaire excel file poorly made.
-  	Given an poorly formatted excel file "BadQuestionnaire.csv"
-  	When the user import the file
-  	Then an incorrect format exception is thrown
+
   	

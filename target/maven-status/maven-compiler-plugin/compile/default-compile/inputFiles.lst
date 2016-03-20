@@ -1,8 +1,0 @@
-/home/malika/sources/Questionnaire/Questionnaire-WS/src/main/java/com/cavalier/questionnaire/back/utils/QuestionnaireValidator.java
-/home/malika/sources/Questionnaire/Questionnaire-WS/src/main/java/com/cavalier/questionnaire/back/Application.java
-/home/malika/sources/Questionnaire/Questionnaire-WS/src/main/java/com/cavalier/questionnaire/back/exception/IncorrectFileException.java
-/home/malika/sources/Questionnaire/Questionnaire-WS/src/main/java/com/cavalier/questionnaire/back/model/Answer.java
-/home/malika/sources/Questionnaire/Questionnaire-WS/src/main/java/com/cavalier/questionnaire/back/exception/NotImplementedException.java
-/home/malika/sources/Questionnaire/Questionnaire-WS/src/main/java/com/cavalier/questionnaire/back/service/reader/ExcelReader.java
-/home/malika/sources/Questionnaire/Questionnaire-WS/src/main/java/com/cavalier/questionnaire/back/utils/ExcelFileColumns.java
-/home/malika/sources/Questionnaire/Questionnaire-WS/src/main/java/com/cavalier/questionnaire/back/model/Question.java

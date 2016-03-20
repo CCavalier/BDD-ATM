@@ -1,8 +1,0 @@
-com/cavalier/questionnaire/back/model/Answer.class
-com/cavalier/questionnaire/back/service/reader/ExcelReader.class
-com/cavalier/questionnaire/back/exception/IncorrectFileException.class
-com/cavalier/questionnaire/back/model/Question.class
-com/cavalier/questionnaire/back/Application.class
-com/cavalier/questionnaire/back/utils/QuestionnaireValidator.class
-com/cavalier/questionnaire/back/utils/ExcelFileColumns.class
-com/cavalier/questionnaire/back/exception/NotImplementedException.class
