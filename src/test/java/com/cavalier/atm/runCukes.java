@@ -1,4 +1,4 @@
-package features;
+package com.cavalier.atm;
 
 import org.junit.runner.RunWith;
 
