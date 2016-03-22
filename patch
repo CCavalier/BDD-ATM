@@ -1,0 +1,200 @@
+456d089e558e9285cfbf6860db0d527766b1fd84
+diff --git a/src/main/java/com/cavalier/atm/back/Compute.java b/src/main/java/com/cavalier/atm/back/Compute.java
+index 4ee06f374af01c4e64651e3241bb7129470626ee..ff720458892190ee47cdd9c900cdc3c5ad4ec0d2 100644
+--- a/src/main/java/com/cavalier/atm/back/Compute.java
++++ b/src/main/java/com/cavalier/atm/back/Compute.java
+@@ -1,10 +1,24 @@
+ package com.cavalier.atm.back;
+ 
++import java.util.List;
++
+ public class Compute {
+ 
+-	public static int add(int numberOne, int numberTwo) {
+-		return numberOne + numberTwo;
++	public static int add(List<Integer> numberList) {
++		int sum = 0;
++		for(Integer value : numberList){
++			sum+=value;
++		}
++		return sum;
+ 	}
++
++	/*public static int add(Integer... numbers) {
++		int sum = 0;
++		for(Integer value : numbers){
++			sum += value;
++		}
++		return sum;
++	}*/
+ 	
+ 	
+ 
+diff --git a/src/test/java/com/cavalier/atm/ComputeTest.java b/src/test/java/com/cavalier/atm/ComputeTest.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..4f48806bf8a1bc0a675851385af692f1141f7ba9
+--- /dev/null
++++ b/src/test/java/com/cavalier/atm/ComputeTest.java
+@@ -0,0 +1,47 @@
++package com.cavalier.atm;
++
++import java.util.ArrayList;
++import java.util.List;
++
++import org.junit.Assert;
++
++import com.cavalier.atm.back.Compute;
++
++import cucumber.api.DataTable;
++import cucumber.api.java.en.Given;
++import cucumber.api.java.en.Then;
++import cucumber.api.java.en.When;
++
++
++public class ComputeTest {
++	public int numberOne;
++	public int numberTwo;
++	public List<Integer> numberList = new ArrayList<Integer>();
++	public int result;
++	
++	@Given("^two simple numbers (\\d+) and (\\d+)$")
++	public void two_simple_numbers_and(int numberOne, int numberTwo){
++	    numberList.add(new Integer(numberOne));
++	    numberList.add(new Integer(numberTwo));
++	}
++
++	@When("^I add them$")
++	public void i_add_them() {
++	   result= Compute.add(numberList);
++	}
++	
++	@Given("^the following numbers:$")
++	public void the_following_numbers(DataTable argumentTable) throws Throwable {
++	    // Write code here that turns the phrase above into concrete actions
++	    // For automatic transformation, change DataTable to one of
++	    // List<YourType>, List<List<E>>, List<Map<K,V>> or Map<K,V>.
++	    // E,K,V must be a scalar (String, Integer, Date, enum etc)
++		numberList = argumentTable.asList(Integer.class);
++	}
++
++	@Then("^the result is (\\d+)$")
++	public void the_result_is(int resultExpected){
++	    Assert.assertEquals(resultExpected, result);
++	}
++
++}
+diff --git a/src/test/java/com/cavalier/atm/runCukes.java b/src/test/java/com/cavalier/atm/runCukes.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..d688e027d477a4cc53f2c80a4bffefbf0702d060
+--- /dev/null
++++ b/src/test/java/com/cavalier/atm/runCukes.java
+@@ -0,0 +1,11 @@
++package com.cavalier.atm;
++
++import org.junit.runner.RunWith;
++
++import cucumber.api.junit.Cucumber;
++
++
++@RunWith(Cucumber.class)
++public class runCukes {
++	
++}
+\ No newline at end of file
+diff --git a/src/test/java/features/ComputeTest.java b/src/test/java/features/ComputeTest.java
+deleted file mode 100644
+index 3b85a0ffd448c218371b032a8e8d708fbe02981c..0000000000000000000000000000000000000000
+--- a/src/test/java/features/ComputeTest.java
++++ /dev/null
+@@ -1,33 +0,0 @@
+-package features;
+-
+-import org.junit.Assert;
+-
+-import com.cavalier.atm.back.Compute;
+-
+-import cucumber.api.java.en.Given;
+-import cucumber.api.java.en.Then;
+-import cucumber.api.java.en.When;
+-
+-
+-public class ComputeTest {
+-	public int numberOne;
+-	public int numberTwo;
+-	public int result;
+-	
+-	@Given("^two simple numbers (\\d+) and (\\d+)$")
+-	public void two_simple_numbers_and(int numberOne, int numberTwo){
+-	    this.numberOne = numberOne;
+-	    this.numberTwo = numberTwo;
+-	}
+-
+-	@When("^I add them$")
+-	public void i_add_them() {
+-	   result= Compute.add(numberOne, numberTwo);
+-	}
+-
+-	@Then("^the result is (\\d+)$")
+-	public void the_result_is(int resultExpected){
+-	    Assert.assertEquals(resultExpected, result);
+-	}
+-
+-}
+diff --git a/src/test/java/features/runCukes.java b/src/test/java/features/runCukes.java
+deleted file mode 100644
+index d4db633e4e1244b12c9fe7bc1cfce113b0095a94..0000000000000000000000000000000000000000
+--- a/src/test/java/features/runCukes.java
++++ /dev/null
+@@ -1,11 +0,0 @@
+-package features;
+-
+-import org.junit.runner.RunWith;
+-
+-import cucumber.api.junit.Cucumber;
+-
+-
+-@RunWith(Cucumber.class)
+-public class runCukes {
+-	
+-}
+\ No newline at end of file
+diff --git a/src/test/resources/features/Compute.feature b/src/test/resources/features/Compute.feature
+new file mode 100644
+index 0000000000000000000000000000000000000000..240549f2ed3a08a8855f2690f5e19aa31e69b098
+--- /dev/null
++++ b/src/test/resources/features/Compute.feature
+@@ -0,0 +1,17 @@
++Feature: compute
++	permet d' effectuer des operations
++ 
++  Scenario: Add two simple numbers.
++  	Given two simple numbers 2 and 3
++  	When I add them
++  	Then the result is 5
++  	
++Scenario: Add many numbers
++	Given the following numbers:
++		| 2 |
++		| 4 |
++		| 1 |
++		| 5 |
++	When I add them
++	Then the result is 12
++	
+diff --git a/src/test/resources/features/QuestionnaireReading.feature b/src/test/resources/features/QuestionnaireReading.feature
+deleted file mode 100644
+index 4ed286257cad53ca3ecbd9cf6589614067819dc9..0000000000000000000000000000000000000000
+--- a/src/test/resources/features/QuestionnaireReading.feature
++++ /dev/null
+@@ -1,10 +0,0 @@
+-Feature: compute
+-	permet d' effectuer des operations
+- 
+-  Scenario: Add two simple numbers.
+-  	Given two simple numbers 2 and 3
+-  	When I add them
+-  	Then the result is 5
+-  	
+-
+-  	
+\ No newline at end of file

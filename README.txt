@@ -22,3 +22,7 @@ Step 1 - ajouter le scenario pour l' addition
   
 Exemple de Substract (démo)
 Exemple de Multiply (hands on)
+
+Sujet:
+mettre au point des classes permettant de retirer de l' argent d' un distributeur
+on doit pouvoir retirer de l' argent si le distributeur possede les coupures  necessaires
