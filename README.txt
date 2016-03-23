@@ -18,3 +18,7 @@ Step 1 - ajouter le scenario pour l' addition
   Step 5- executer comme junit la classe runCukes
   	Le scenario est automatiquement execute
   	il ne reste plus qu' a implementer la methode afin que celui ci passe au vert
+  	
+  
+Exemple de Substract (démo)
+Exemple de Multiply (hands on)
